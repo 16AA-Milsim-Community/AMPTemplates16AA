@@ -1,0 +1,16 @@
+[
+    {
+        "Protocol": "TCP",
+        "Port": 40120,
+        "Ref": "txAdminPort",
+        "Name": "txAdmin Web Panel Port",
+        "Description": "Port for the txAdmin web panel. Forced into txAdmin via TXHOST_TXA_PORT"
+    },
+    {
+        "Protocol": "Both",
+        "Port": 30120,
+        "Ref": "ServerPort",
+        "Name": "Game Port",
+        "Description": "Port players connect to (TCP and UDP). Forced into server.cfg by txAdmin via TXHOST_FXS_PORT. Must not be between 40120 and 40150"
+    }
+]

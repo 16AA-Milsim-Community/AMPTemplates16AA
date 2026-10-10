@@ -1,0 +1,26 @@
+[
+    {
+        "UpdateStageName": "Stop Leftover FXServer Processes",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "powershell.exe",
+        "UpdateSourceArgs": "-NoProfile -NonInteractive -Command \"Get-Process FXServer -ErrorAction SilentlyContinue | Where-Object { $_.Path -and $_.Path.StartsWith('{{$FullBaseDir}}', [StringComparison]::OrdinalIgnoreCase) } | Stop-Process -Force -ErrorAction SilentlyContinue; exit 0\"",
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Stop Leftover FXServer Processes",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"command -v pkill >/dev/null 2>&1 && pkill -9 -f '{{$FullBaseDir}}server/alpine/opt/cfx-server/[F]XServer'; exit 0\"",
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Ensure txData Directory",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "CreateDirectory",
+        "UpdateSourceArgs": "{{$FullBaseDir}}txData",
+        "OverwriteExistingFiles": false,
+        "SkipOnFailure": false
+    }
+]
